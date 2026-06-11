@@ -8,7 +8,7 @@ function Footer(){
                 Trabalho em grupo - React + Vite | Serratec
             </p>
             <p>
-                Desenvolvido por Bruno Passamani, Lucas Cardoso, João Paulo e Lucas  Lira
+                Desenvolvido por Bruno Passamani, Lucas Cardoso, João Paulo e Lucas Lira
             </p>
 
         </footer>
