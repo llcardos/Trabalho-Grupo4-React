@@ -1,4 +1,4 @@
-﻿import '../styles/card.css'
+import '../styles/card.css'
 
 function Card({ items = [], keyExtractor, renderItem, className = "carditem" }) {
   return (
