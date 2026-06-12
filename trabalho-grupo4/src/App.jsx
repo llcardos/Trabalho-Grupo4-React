@@ -6,7 +6,7 @@ import Card from './components/Card.jsx'
 import api from './services/api';
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
-import { AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 // const aliens = [
 //   { id: 1, nome: "Zorg", Planeta: "Xenon", Especie: "Reptiliana", Especiedescricao: "Seres inteligentes com aparência de répteis, conhecidos por sua astúcia e habilidades tecnológicas avançadas.", data: "2024-05-01", criadoEm: "2024-06-01" },
 //   { id: 2, nome: "Blip", Planeta: "Zog", Especie: "Gelatinoso", Especiedescricao: "Seres amorfos feitos de uma substância gelatinosa, capazes de mudar de forma e cor para se camuflar em seu ambiente.", data: "2024-05-15", criadoEm: "2024-06-02" }
@@ -22,37 +22,58 @@ const planetas = [
 ]
 
 
-function App() {
+function RotaProtegida({ children }) {
+  const { estaAutenticado } = useAuth();
+
+  if (!estaAutenticado) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+}
+
+function AppContent() {
+  const { estaAutenticado } = useAuth();
   const [aliensAPI, setAliens] = useState([]);
-  const [loading, setLoading] = useState(false);
   const url = "/aliens";
 
   useEffect(() => {
+    if (!estaAutenticado) {
+      setAliens([]);
+      return;
+    }
+
     async function buscarAliensComAxios() {
       try {
-        setLoading(true);
         const resposta = await api.get(url);
         setAliens(resposta.data);
       } catch (error) {
         console.error("Erro ao buscar aliens com axios:", error);
-      } finally {
-        setLoading(false);
       }
     }
 
     buscarAliensComAxios();
-  }, []);
+  }, [estaAutenticado]);
 
   return (
-    <AuthProvider>
+    <>
       <Header />
 
       <main>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/avistamento" element={<Card
+          <Route
+            path="/"
+            element={<Navigate to={estaAutenticado ? "/avistamento" : "/login"} replace />}
+          />
+          <Route
+            path="/login"
+            element={estaAutenticado ? <Navigate to="/avistamento" replace /> : <Login />}
+          />
+          <Route
+            path="/cadastro"
+            element={estaAutenticado ? <Navigate to="/avistamento" replace /> : <Cadastro />}
+          />
+          <Route path="/avistamento" element={<RotaProtegida><Card
             items={avistamentos}
             className="cardAvistamento"
             renderItem={(item) => (
@@ -64,43 +85,51 @@ function App() {
                 <h6>Avistado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
               </>
             )}
-          />} />
+          /></RotaProtegida>} />
 
 
 
-          <Route path="/aliens" element={<Card 
-          items={aliensAPI}
-          className="cardAlien"
-          renderItem={(item) => (
-            <>
-              <h3>{item.id}. {item.nome}</h3>
-              <h2>Perigo: {item.periculosidade}</h2>
-              <h4>{item.planeta}</h4>
-              <h5>Especie: {item.especie}</h5>
-              <p>{item.descricao}</p>
-              <h6>Criado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
-            </>
-          )} />} />
+          <Route path="/aliens" element={<RotaProtegida><Card
+            items={aliensAPI}
+            className="cardAlien"
+            renderItem={(item) => (
+              <>
+                <h3>{item.id}. {item.nome}</h3>
+                <h2>Perigo: {item.periculosidade}</h2>
+                <h4>{item.planeta}</h4>
+                <h5>Especie: {item.especie}</h5>
+                <p>{item.descricao}</p>
+                <h6>Criado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
+              </>
+            )} /></RotaProtegida>} />
 
 
 
-          <Route path="/planetas" element={<Card
-          className="cardPlaneta"
-          items={planetas} 
-          renderItem={(item) => (
-          <>
-              <h3>{item.id}. {item.nome}</h3>
-              <h4>Galaxia: {item.galaxia}</h4>
-              <h4>Clima: {item.clima}</h4>
-              <h6>{item.habitavel ? "Habitavel" : "Nao-habitavel"}</h6>
-              <p>{item.descricao}</p>
-              <h6>Criado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
-            </>
-          )} />} />
-          
+          <Route path="/planetas" element={<RotaProtegida><Card
+            className="cardPlaneta"
+            items={planetas}
+            renderItem={(item) => (
+              <>
+                <h3>{item.id}. {item.nome}</h3>
+                <h4>Galaxia: {item.galaxia}</h4>
+                <h4>Clima: {item.clima}</h4>
+                <h6>{item.habitavel ? "Habitavel" : "Nao-habitavel"}</h6>
+                <p>{item.descricao}</p>
+                <h6>Criado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
+              </>
+            )} /></RotaProtegida>} />
+
           <Route path="*" element={<h1>Página não encontrada</h1>} />
         </Routes>
       </main>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
     </AuthProvider>
   );
 }

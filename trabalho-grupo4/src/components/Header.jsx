@@ -15,40 +15,52 @@ function Header() {
     <header className="site-header">
       <nav className="site-nav">
         <ul className="site-nav-list">
-          <li>
-            <Link className="site-nav-link" to="/login">
-              Login
-            </Link>
-          </li>
+          {!estaAutenticado && (
+            <>
+              <li>
+                <Link className="site-nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
 
-          <li>
-            <Link className="site-nav-link" to="/avistamento">
-              Avistamento
-            </Link>
-          </li>
-
-          <li>
-            <Link className="site-nav-link" to="/aliens">
-              Aliens
-            </Link>
-          </li>
-
-          <li>
-            <Link className="site-nav-link" to="/planetas">
-              Planetas
-            </Link>
-          </li>
+              <li>
+                <Link className="site-nav-link" to="/cadastro">
+                  Cadastro
+                </Link>
+              </li>
+            </>
+          )}
 
           {estaAutenticado && (
-            <li>
-              <button
-                className="site-nav-link logout-button"
-                type="button"
-                onClick={sair}
-              >
-                Sair
-              </button>
-            </li>
+            <>
+              <li>
+                <Link className="site-nav-link" to="/avistamento">
+                  Avistamento
+                </Link>
+              </li>
+
+              <li>
+                <Link className="site-nav-link" to="/aliens">
+                  Aliens
+                </Link>
+              </li>
+
+              <li>
+                <Link className="site-nav-link" to="/planetas">
+                  Planetas
+                </Link>
+              </li>
+
+              <li>
+                <button
+                  className="site-nav-link logout-button"
+                  type="button"
+                  onClick={sair}
+                >
+                  Sair
+                </button>
+              </li>
+            </>
           )}
         </ul>
       </nav>
