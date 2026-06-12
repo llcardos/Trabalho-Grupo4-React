@@ -1,4 +1,4 @@
-function cardAvistamento(Avistamentos){
+function cardAvistamento(avistamentos){
 return( 
 <>
 {Avistamentos.map((avistamento) => (
@@ -33,7 +33,7 @@ return(
 )}
 
 
-function cardPlaneta(Planetas){
+function cardPlaneta(planetas){
 return( 
 <>
 {Planetas.map((planeta) => (    
@@ -50,7 +50,7 @@ return(
 )}
 
 
-function cardEvidencia(Evidencias){
+function cardEvidencia(evidencias){
 return(
 <>
 {Evidencias.map((evidencia) => (     
