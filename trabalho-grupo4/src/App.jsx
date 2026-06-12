@@ -1,17 +1,12 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
-import Header from "./components/Header";
-import Login from "./pages/Login";
-import Cadastro from "./pages/Cadastro";
-import { AuthProvider } from "./contexts/AuthContext";
-import { Navigate, Route, Routes } from 'react-router-dom'
 import { useEffect, useState } from "react";
 import './App.css'
 import Header from './components/Header'
 import Card from './components/Card.jsx'
 import api from './services/api';
-
-
+import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro";
+import { AuthProvider } from "./contexts/AuthContext";
 // const aliens = [
 //   { id: 1, nome: "Zorg", Planeta: "Xenon", Especie: "Reptiliana", Especiedescricao: "Seres inteligentes com aparência de répteis, conhecidos por sua astúcia e habilidades tecnológicas avançadas.", data: "2024-05-01", criadoEm: "2024-06-01" },
 //   { id: 2, nome: "Blip", Planeta: "Zog", Especie: "Gelatinoso", Especiedescricao: "Seres amorfos feitos de uma substância gelatinosa, capazes de mudar de forma e cor para se camuflar em seu ambiente.", data: "2024-05-15", criadoEm: "2024-06-02" }
@@ -48,23 +43,15 @@ function App() {
     buscarAliensComAxios();
   }, []);
 
-
   return (
     <AuthProvider>
       <Header />
+
       <main>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/avistamento" element={<h1>Avistamento</h1>} />
-          <Route path="/aliens" element={<h1>Aliens</h1>} />
-          <Route path="/planetas" element={<h1>Planetas</h1>} />
-          <Route path="*" element={<h1>Página não encontrada</h1>} />
-          <Route path="/login" element={<h1>Login</h1>} />
-
-
-
           <Route path="/avistamento" element={<Card
             items={avistamentos}
             className="cardAvistamento"
@@ -110,9 +97,8 @@ function App() {
               <h6>Criado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
             </>
           )} />} />
-
-
-          <Route path="*" element={<h1>Pagina nao encontrada</h1>} />
+          
+          <Route path="*" element={<h1>Página não encontrada</h1>} />
         </Routes>
       </main>
     </AuthProvider>
@@ -120,5 +106,3 @@ function App() {
 }
 
 export default App
-
-
