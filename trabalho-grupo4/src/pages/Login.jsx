@@ -37,7 +37,7 @@ function Login() {
 
             setMensagem("Login realizado com sucesso!");
 
-            navigate("/avistamento");
+            navigate("/home");
         } catch (error) {
             console.error("Erro ao fazer login:", error);
             console.error("Resposta da API:", error.response?.data);
