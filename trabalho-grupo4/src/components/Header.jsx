@@ -34,6 +34,11 @@ function Header() {
           {estaAutenticado && (
             <>
               <li>
+                <Link className="site-nav-link" to="/home">
+                  Home
+                </Link>
+              </li>
+              <li>
                 <Link className="site-nav-link" to="/avistamento">
                   Avistamento
                 </Link>
