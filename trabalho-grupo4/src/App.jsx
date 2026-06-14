@@ -9,20 +9,6 @@ import Cadastro from "./pages/Cadastro";
 import Avistamentos from './pages/Avistamentos.jsx';
 import Home from './pages/Home.jsx';
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
-// const aliens = [
-//   { id: 1, nome: "Zorg", Planeta: "Xenon", Especie: "Reptiliana", Especiedescricao: "Seres inteligentes com aparência de répteis, conhecidos por sua astúcia e habilidades tecnológicas avançadas.", data: "2024-05-01", criadoEm: "2024-06-01" },
-//   { id: 2, nome: "Blip", Planeta: "Zog", Especie: "Gelatinoso", Especiedescricao: "Seres amorfos feitos de uma substância gelatinosa, capazes de mudar de forma e cor para se camuflar em seu ambiente.", data: "2024-05-15", criadoEm: "2024-06-02" }
-// ]
-
-const avistamentos = [
-  { id: 1, titulo: "Luz Estranha no Céu", local: "Campo Aberto", data: "2024-05-10", descricao: "Várias testemunhas relataram uma luz brilhante e pulsante no céu durante a noite, que se movia de maneira errática antes de desaparecer." },
-  { id: 2, titulo: "Objeto Voador Não Identificado", local: "Cidade Grande", data: "2024-05-20", descricao: "Um objeto metálico em forma de disco foi visto pairando sobre a cidade por vários minutos, emitindo um zumbido baixo antes de subir rapidamente e desaparecer." }
-]
-
-const planetas = [
-  { id: 1, nome: "Xenon", galaxia: "Andromeda", clima: "Árido", habitavel: false, descricao: "Planeta desértico com temperaturas extremas e pouca água, habitado por formas de vida adaptadas a condições severas.", criadoEm: "2024-06-03" },
-]
-
 
 function RotaProtegida({ children }) {
   const { estaAutenticado } = useAuth();
@@ -37,24 +23,44 @@ function RotaProtegida({ children }) {
 function AppContent() {
   const { estaAutenticado } = useAuth();
   const [aliensAPI, setAliens] = useState([]);
+  const [avistamentosAPI, setAvistamentos] = useState([]);
+  const [planetas, setPlanetas] = useState([]);
   const url = "/aliens";
+  const urlAvistamentos = "/avistamentos";
+  const urlPlanetas = "/planetas";
 
   useEffect(() => {
     if (!estaAutenticado) {
       setAliens([]);
+      setAvistamentos([]);
+      setPlanetas([]);
       return;
     }
 
-    async function buscarAliensComAxios() {
+    async function buscarDados() {
       try {
-        const resposta = await api.get(url);
-        setAliens(resposta.data);
+        const respostaAliens = await api.get(url);
+        setAliens(respostaAliens.data);
       } catch (error) {
         console.error("Erro ao buscar aliens com axios:", error);
       }
+
+      try {
+        const respostaAvistamentos = await api.get(urlAvistamentos);
+        setAvistamentos(respostaAvistamentos.data);
+      } catch (error) {
+        console.error("Erro ao buscar avistamentos com axios:", error);
+      }
+
+      try {
+        const respostaPlanetas = await api.get(urlPlanetas);
+        setPlanetas(respostaPlanetas.data);
+      } catch (error) {
+        console.error("Erro ao buscar planetas com axios:", error);
+      }
     }
 
-    buscarAliensComAxios();
+    buscarDados();
   }, [estaAutenticado]);
 
   return (
@@ -78,7 +84,7 @@ function AppContent() {
         <Route path="/home" element={<RotaProtegida><Home/></RotaProtegida>} />
 
         <Route path="/avistamento" element={<RotaProtegida><Card
-            items={avistamentos}
+            items={avistamentosAPI}
             className="cardAvistamento"
             renderItem={(item) => (
               <>
