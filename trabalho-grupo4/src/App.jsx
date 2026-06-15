@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './App.css'
 import Header from './components/Header'
@@ -14,6 +14,7 @@ import alienVideo from './videos/alien.mp4';
 
 function AppContent() {
   const { estaAutenticado } = useAuth();
+  const location = useLocation();
   const [aliensAPI, setAliens] = useState([]);
   const [avistamentosAPI, setAvistamentos] = useState([]);
   const [planetas, setPlanetas] = useState([]);
@@ -61,7 +62,7 @@ function AppContent() {
     <>
       <Header />
 
-      <body className={mainClass}>
+      <main className={mainClass}>
         <Routes>
           <Route
             path="/"
@@ -80,6 +81,7 @@ function AppContent() {
             element={
               <>
                 <video
+                  key="home-video"
                   autoPlay
                   loop
                   muted
@@ -103,6 +105,7 @@ function AppContent() {
           <Route path="/avistamento" element={
             <>
               <video
+                key="avistamento-video"
                 autoPlay
                 loop
                 muted
@@ -137,6 +140,7 @@ function AppContent() {
           <Route path="/aliens" element={
             <>
               <video
+                key="aliens-video"
                 autoPlay
                 loop
                 muted
@@ -187,7 +191,7 @@ function AppContent() {
 
           <Route path="*" element={<h1>Página não encontrada</h1>} />
         </Routes>
-      </body>
+      </main>
     </>
   );
 }
