@@ -6,56 +6,44 @@ import Card from './components/Card.jsx'
 import api from './services/api';
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
-import Avistamentos from './pages/Avistamentos.jsx';
 import Home from './pages/Home.jsx';
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
-// const aliens = [
-//   { id: 1, nome: "Zorg", Planeta: "Xenon", Especie: "Reptiliana", Especiedescricao: "Seres inteligentes com aparência de répteis, conhecidos por sua astúcia e habilidades tecnológicas avançadas.", data: "2024-05-01", criadoEm: "2024-06-01" },
-//   { id: 2, nome: "Blip", Planeta: "Zog", Especie: "Gelatinoso", Especiedescricao: "Seres amorfos feitos de uma substância gelatinosa, capazes de mudar de forma e cor para se camuflar em seu ambiente.", data: "2024-05-15", criadoEm: "2024-06-02" }
-// ]
-
-const avistamentos = [
-  { id: 1, titulo: "Luz Estranha no Céu", local: "Campo Aberto", data: "2024-05-10", descricao: "Várias testemunhas relataram uma luz brilhante e pulsante no céu durante a noite, que se movia de maneira errática antes de desaparecer." },
-  { id: 2, titulo: "Objeto Voador Não Identificado", local: "Cidade Grande", data: "2024-05-20", descricao: "Um objeto metálico em forma de disco foi visto pairando sobre a cidade por vários minutos, emitindo um zumbido baixo antes de subir rapidamente e desaparecer." }
-]
-
-const planetas = [
-  { id: 1, nome: "Xenon", galaxia: "Andromeda", clima: "Árido", habitavel: false, descricao: "Planeta desértico com temperaturas extremas e pouca água, habitado por formas de vida adaptadas a condições severas.", criadoEm: "2024-06-03" },
-]
-
-
-function RotaProtegida({ children }) {
-  const { estaAutenticado } = useAuth();
-
-  if (!estaAutenticado) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
-}
 
 function AppContent() {
   const { estaAutenticado } = useAuth();
   const [aliensAPI, setAliens] = useState([]);
-  const url = "/aliens";
+  const [avistamentosAPI, setAvistamentos] = useState([]);
+  const [planetas, setPlanetas] = useState([]);
+  const urlAliens = "/aliens";
+  const urlAvistamentos = "/avistamentos";
+  const urlPlanetas = "/planetas";
 
   useEffect(() => {
-    if (!estaAutenticado) {
-      setAliens([]);
-      return;
-    }
-
-    async function buscarAliensComAxios() {
+    async function buscarDados() {
       try {
-        const resposta = await api.get(url);
-        setAliens(resposta.data);
+        const respostaAliens = await api.get(urlAliens);
+        setAliens(respostaAliens.data);
       } catch (error) {
         console.error("Erro ao buscar aliens com axios:", error);
       }
+
+      try {
+        const respostaAvistamentos = await api.get(urlAvistamentos);
+        setAvistamentos(respostaAvistamentos.data);
+      } catch (error) {
+        console.error("Erro ao buscar avistamentos com axios:", error);
+      }
+
+      try {
+        const respostaPlanetas = await api.get(urlPlanetas);
+        setPlanetas(respostaPlanetas.data);
+      } catch (error) {
+        console.error("Erro ao buscar planetas com axios:", error);
+      }
     }
 
-    buscarAliensComAxios();
-  }, [estaAutenticado]);
+    buscarDados();
+  }, []);
 
   return (
     <>
@@ -65,7 +53,7 @@ function AppContent() {
       <Routes>
         <Route
           path="/"
-          element={<Navigate to={estaAutenticado ? "/home" : "/login"} replace />}
+          element={<Navigate to="/home" replace />}
         />
         <Route
           path="/login"
@@ -75,10 +63,10 @@ function AppContent() {
           path="/cadastro"
           element={estaAutenticado ? <Navigate to="/home" replace /> : <Cadastro />}
         />
-        <Route path="/home" element={<RotaProtegida><Home/></RotaProtegida>} />
+        <Route path="/home" element={<Home />} />
 
-        <Route path="/avistamento" element={<RotaProtegida><Card
-            items={avistamentos}
+        <Route path="/avistamento" element={<Card
+            items={avistamentosAPI}
             className="cardAvistamento"
             renderItem={(item) => (
               <>
@@ -88,9 +76,9 @@ function AppContent() {
                 <p>{item.descricao}</p>
                 <h6>Avistado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
               </>
-            )} /></RotaProtegida>} />
+            )} />} />
 
-        <Route path="/aliens" element={<RotaProtegida><Card
+        <Route path="/aliens" element={<Card
           items={aliensAPI}
           className="cardAlien"
           renderItem={(item) => (
@@ -102,11 +90,11 @@ function AppContent() {
               <p>{item.descricao}</p>
               <h6>Criado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
             </>
-          )} /></RotaProtegida>} />
+          )} />} />
 
 
 
-        <Route path="/planetas" element={<RotaProtegida><Card
+        <Route path="/planetas" element={<Card
           className="cardPlaneta"
           items={planetas}
           renderItem={(item) => (
@@ -118,7 +106,7 @@ function AppContent() {
               <p>{item.descricao}</p>
               <h6>Criado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
             </>
-          )} /></RotaProtegida>} />
+          )} />} />
 
         <Route path="*" element={<h1>Página não encontrada</h1>} />
       </Routes>
