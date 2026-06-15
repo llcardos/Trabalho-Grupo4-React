@@ -2,7 +2,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './App.css'
 import Header from './components/Header'
-import Card from './components/Card.jsx'
+import Card from './components/card.jsx'
 import api from './services/api';
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
