@@ -384,7 +384,7 @@ function Home() {
 
   return (
     <section className="home-container">
-      <h1>Bem-vindo à Home</h1>
+      <h1 className="texto-titulo">Bem-vindo à Home</h1>
       
       {nomeUsuario && <p className="usuario-logado">Olá, {nomeUsuario}!</p>}
 
@@ -393,7 +393,7 @@ function Home() {
       {estaAutenticado && (
         <div className="admin-section">
           <h2>🗺️ Gerenciamento do Catálogo</h2>
-          <p className="admin-descricao">
+          <p className="texto-subtitulo">
             Utilize os botões abaixo para gerenciar planetas, aliens e avistamentos.
           </p>
 
@@ -539,8 +539,8 @@ function Home() {
 
       {!estaAutenticado && (
         <div className="public-content">
-          <h2>🌌 Explore o Universo Alienígena</h2>
-          <p>
+          <h2 className="texto-titulo">Explore o Universo Alienígena</h2>
+          <p className="texto-subtitulo">
             Faça login para acessar recursos exclusivos de gerenciamento!
           </p>
           <div className="login-prompt">

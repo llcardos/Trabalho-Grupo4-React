@@ -3,23 +3,24 @@
 .cardAlien,
 .cardAvistamento,
 .cardPlaneta {
-    border-color: rgba(0, 0, 0, 0.575);
-    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.103);
+    border-width: 1px;
     border-style: solid;
     border-radius: 20px;
     padding: 16px;
     margin: 12px 0;
+    color: #e2e8f0;
     
 }
 
 .cardAlien {
-    background-color: #d0f0fd;
+    background-color: #8785ee27;
 }
 
 .cardAvistamento {
-    background-color: #f7f0d0;
+    background-color: #8785ee27;
 }
 
 .cardPlaneta {
-    background-color: #d0f7e3;
+    background-color: #8785ee27;
 }
