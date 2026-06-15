@@ -15,24 +15,8 @@ function Header() {
     <header className="site-header">
       <nav className="site-nav">
         <ul className="site-nav-list">
-          {!estaAutenticado && (
-            <>
-              <li>
-                <Link className="site-nav-link" to="/login">
-                  Login
-                </Link>
-              </li>
+       
 
-              <li>
-                <Link className="site-nav-link" to="/cadastro">
-                  Cadastro
-                </Link>
-              </li>
-            </>
-          )}
-
-          {estaAutenticado && (
-            <>
               <li>
                 <Link className="site-nav-link" to="/home">
                   Home
@@ -55,6 +39,11 @@ function Header() {
                   Planetas
                 </Link>
               </li>
+
+
+          {estaAutenticado && (
+            <>
+
 
               <li>
                 <button

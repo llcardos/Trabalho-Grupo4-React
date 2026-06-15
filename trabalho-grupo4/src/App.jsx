@@ -6,19 +6,8 @@ import Card from './components/Card.jsx'
 import api from './services/api';
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
-import Avistamentos from './pages/Avistamentos.jsx';
 import Home from './pages/Home.jsx';
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
-
-function RotaProtegida({ children }) {
-  const { estaAutenticado } = useAuth();
-
-  if (!estaAutenticado) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
-}
 
 function AppContent() {
   const { estaAutenticado } = useAuth();
@@ -71,7 +60,7 @@ function AppContent() {
       <Routes>
         <Route
           path="/"
-          element={<Navigate to={estaAutenticado ? "/home" : "/login"} replace />}
+          element={<Navigate to="/home" replace />}
         />
         <Route
           path="/login"
@@ -81,9 +70,9 @@ function AppContent() {
           path="/cadastro"
           element={estaAutenticado ? <Navigate to="/home" replace /> : <Cadastro />}
         />
-        <Route path="/home" element={<RotaProtegida><Home/></RotaProtegida>} />
+        <Route path="/home" element={<Home />} />
 
-        <Route path="/avistamento" element={<RotaProtegida><Card
+        <Route path="/avistamento" element={<Card
             items={avistamentosAPI}
             className="cardAvistamento"
             renderItem={(item) => (
@@ -94,9 +83,9 @@ function AppContent() {
                 <p>{item.descricao}</p>
                 <h6>Avistado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
               </>
-            )} /></RotaProtegida>} />
+            )} />} />
 
-        <Route path="/aliens" element={<RotaProtegida><Card
+        <Route path="/aliens" element={<Card
           items={aliensAPI}
           className="cardAlien"
           renderItem={(item) => (
@@ -108,11 +97,11 @@ function AppContent() {
               <p>{item.descricao}</p>
               <h6>Criado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
             </>
-          )} /></RotaProtegida>} />
+          )} />} />
 
 
 
-        <Route path="/planetas" element={<RotaProtegida><Card
+        <Route path="/planetas" element={<Card
           className="cardPlaneta"
           items={planetas}
           renderItem={(item) => (
@@ -124,7 +113,7 @@ function AppContent() {
               <p>{item.descricao}</p>
               <h6>Criado em: {new Date(item.criadoEm).toLocaleString('pt-BR')}</h6>
             </>
-          )} /></RotaProtegida>} />
+          )} />} />
 
         <Route path="*" element={<h1>Página não encontrada</h1>} />
       </Routes>
