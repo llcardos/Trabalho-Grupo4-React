@@ -1,8 +1,8 @@
-function FormAlien({ cadastrarAlien, fecharModal, formAlien, setFormAlien, titulo, submitLabel, isEdicao }) {
+function FormAlien({ onSubmit, fecharModal, formAlien, setFormAlien, titulo, submitLabel, isEdicao }) {
   return (
-    <form className="alien-form" onSubmit={cadastrarAlien}>
+    <form className="alien-form" onSubmit={onSubmit}>
       <div className="modal-header">
-        <h2>{titulo && (isEdicao ? "Editar alien" : "Cadastrar alien")}</h2>
+        <h2> {isEdicao ? "Editar alien" : "Cadastrar alien"}</h2>
         <button
           aria-label="Fechar modal"
           className="modal-close"
@@ -88,7 +88,7 @@ function FormAlien({ cadastrarAlien, fecharModal, formAlien, setFormAlien, titul
       </label>
 
       <div className="form-actions">
-        <button type="submit">{submitLabel || (isEdicao ? "Salvar alterações" : "Cadastrar")}</button>
+        <button type="submit">{isEdicao ? "Salvar alterações" : "Cadastrar"}</button>
         <button className="button-secondary" onClick={fecharModal} type="button">
           Cancelar
         </button>

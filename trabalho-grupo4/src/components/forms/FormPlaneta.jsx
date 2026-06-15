@@ -1,9 +1,9 @@
 
-function FormPlaneta({ cadastrarPlaneta, fecharModal, formPlaneta, setFormPlaneta, titulo, submitLabel, isEdicao }) {
+function FormPlaneta({ onSubmit, fecharModal, formPlaneta, setFormPlaneta, titulo, submitLabel, isEdicao }) {
   return (
-    <form className="alien-form" onSubmit={cadastrarPlaneta}>
+    <form className="alien-form" onSubmit={onSubmit}>
       <div className="modal-header">
-        <h2>{titulo || (isEdicao ? "Editar planeta" : "Cadastrar planeta")}</h2>
+        <h2>{isEdicao ? "Editar planeta" : "Cadastrar planeta"}</h2>
         <button
           aria-label="Fechar modal"
           className="modal-close"
@@ -83,7 +83,7 @@ function FormPlaneta({ cadastrarPlaneta, fecharModal, formPlaneta, setFormPlanet
       </label>
 
       <div className="form-actions">
-        <button type="submit">{submitLabel || (isEdicao ? "Salvar alterações" : "Cadastrar")}</button>
+        <button type="submit">{isEdicao ? "Salvar alterações" : "Cadastrar"}</button>
         <button className="button-secondary" onClick={fecharModal} type="button">
           Cancelar
         </button>

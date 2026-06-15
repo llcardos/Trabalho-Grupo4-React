@@ -1,8 +1,8 @@
-function FormAvistamento({ cadastrarAvistamento, fecharModal, formAvistamento, setFormAvistamento, titulo, submitLabel, isEdicao }) {
+function FormAvistamento({ onSubmit, fecharModal, formAvistamento, setFormAvistamento, titulo, submitLabel, isEdicao }) {
   return (
-    <form className="avistamento-form" onSubmit={cadastrarAvistamento}>
+    <form className="avistamento-form" onSubmit={onSubmit}>
       <div className="modal-header">
-        <h2>{titulo || (isEdicao ? "Editar avistamento" : "Cadastrar Avistamento")}</h2>
+        <h2>{isEdicao ? "Editar avistamento" : "Cadastrar Avistamento"}</h2>
         <button
           aria-label="Fechar modal"
           className="modal-close"
@@ -92,7 +92,7 @@ function FormAvistamento({ cadastrarAvistamento, fecharModal, formAvistamento, s
 
 
       <div className="form-actions">
-        <button type="submit">{submitLabel || (isEdicao ? "Salvar alterações" : "Cadastrar")}</button>
+        <button type="submit">{isEdicao ? "Salvar alterações" : "Cadastrar"}</button>
         <button className="button-secondary" onClick={fecharModal} type="button">
           Cancelar
         </button>
