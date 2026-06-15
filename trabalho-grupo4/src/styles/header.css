@@ -1,7 +1,7 @@
 .site-header {
     padding: 1rem 1.5rem;
-    background: rgba(255, 255, 255, 0.76);
-    border-bottom: 1px solid #e2e8f0;
+    background: rgba(197, 202, 243, 0.226);
+    border-bottom: 1px solid rgba(174, 180, 236, 0.404);
 }
 
 .site-nav {
@@ -31,7 +31,7 @@
     text-decoration: none;
     font-size: 0.94rem;
     font-weight: 500;
-    color: #334155;
+    color: #c1cbda;
     background: transparent;
     transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }

@@ -1,5 +1,5 @@
 .info-listas {
-    background-color: #e3f2fd;
+    background-color: #8785ee27;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -8,6 +8,10 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.info-listas p {
+    color: #f0f0f0;
 }
 
 .btn-recargar {
@@ -26,15 +30,15 @@
 .entidade-section {
     margin-bottom: 30px;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #dddddd30;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color:#8785ee27;
 }
 
 .entidade-section h3 {
     margin-top: 0;
     margin-bottom: 15px;
-    color: #333;
+    color: #f0f0f0;
 }
 
 .botoes-gerenciamento {
@@ -231,6 +235,10 @@
     margin-top: 20px;
 }
 
+.admin-section h2 {
+    color: #f0f0f0;
+}
+
 .public-content {
     text-align: center;
     margin-top: 50px;
@@ -248,15 +256,30 @@
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(235, 231, 231, 0.158);
     width: 100%;
 }
 
 .btn-login {
-    background-color: #4CAF50;
+    background-color: #7e54e2;
+    border-color: #333;
     color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #6b42c8;
+    box-shadow: 0 4px 8px rgba(126, 84, 226, 0.3);
 }
 
 .btn-cadastro {
-    background-color: #2196F3;
+    background-color: #4946ee;
     color: white;
+    border-color: #333;
+    transition: all 0.3s ease;
+}
+
+.btn-cadastro:hover {
+    background-color: #3a37c4;
+    box-shadow: 0 4px 8px rgba(73, 70, 238, 0.3);
 }
