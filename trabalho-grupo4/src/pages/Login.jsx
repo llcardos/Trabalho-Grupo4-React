@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Secao from "../components/Secao";
+import "../styles/login.css";
 
 function Login() {
     const navigate = useNavigate();
@@ -51,46 +52,57 @@ function Login() {
     return (
         <Secao titulo="Login">
             <form className="login-form" onSubmit={enviarLogin}>
-                <label>
-                    Email
-                    <input
-                        autoComplete="email"
-                        name="email"
-                        onChange={atualizarCampo}
-                        placeholder="usuario@email.com"
-                        required
-                        type="email"
-                        value={formLogin.email}
-                    />
-                </label>
+                <div className="login-card">
+                    <div className="login-header">
+                        <h2 className="login-title">Bem-vindo</h2>
+                        <p className="login-subtitle">Entre com suas credenciais</p>
+                    </div>
 
-                <label>
-                    Senha
-                    <input
-                        autoComplete="current-password"
-                        name="senha"
-                        onChange={atualizarCampo}
-                        placeholder="Digite sua senha"
-                        required
-                        type="password"
-                        value={formLogin.senha}
-                    />
-                </label>
+                    <div className="login-fields">
+                        <div className="field-group">
+                            <input
+                                autoComplete="email"
+                                name="email"
+                                onChange={atualizarCampo}
+                                placeholder=" "
+                                required
+                                type="email"
+                                value={formLogin.email}
+                                className="field-input"
+                            />
+                            <label className="field-label">Email</label>
+                        </div>
 
-                {mensagem && <p className="mensagem">{mensagem}</p>}
+                        <div className="field-group">
+                            <input
+                                autoComplete="current-password"
+                                name="senha"
+                                onChange={atualizarCampo}
+                                placeholder=" "
+                                required
+                                type="password"
+                                value={formLogin.senha}
+                                className="field-input"
+                            />
+                            <label className="field-label">Senha</label>
+                        </div>
+                    </div>
 
-                <button disabled={carregando} type="submit">
-                    {carregando ? "Entrando..." : "Entrar"}
-                </button>
+                    {mensagem && <p className="login-mensagem erro">{mensagem}</p>}
 
-                <button
-                    className="botao-secundario"
-                    disabled={carregando}
-                    type="button"
-                    onClick={() => navigate("/cadastro")}
-                >
-                    Criar novo usuário
-                </button>
+                    <button className="btn-entrar" disabled={carregando} type="submit">
+                        {carregando ? "Entrando..." : "Entrar"}
+                    </button>
+
+                    <button
+                        className="btn-cadastro"
+                        disabled={carregando}
+                        type="button"
+                        onClick={() => navigate("/cadastro")}
+                    >
+                        Criar novo usuário
+                    </button>
+                </div>
             </form>
         </Secao>
     );

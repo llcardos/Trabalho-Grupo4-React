@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Secao from "../components/Secao";
 import api from "../services/api";
+import "../styles/login.css";
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -59,70 +60,83 @@ function Cadastro() {
   return (
     <Secao titulo="Cadastro">
       <form className="login-form" onSubmit={enviarCadastro}>
-        <label>
-          Nome
-          <input
-            name="nome"
-            onChange={atualizarCampo}
-            placeholder="Digite seu nome"
-            required
-            type="text"
-            value={formCadastro.nome}
-            disabled={cadastroConcluido}
-          />
-        </label>
+        <div className="login-card">
+          <div className="login-header">
+            <h2 className="login-title">Criar conta</h2>
+            <p className="login-subtitle">Preencha os campos para se cadastrar</p>
+          </div>
 
-        <label>
-          Email
-          <input
-            autoComplete="email"
-            name="email"
-            onChange={atualizarCampo}
-            placeholder="usuario@email.com"
-            required
-            type="email"
-            value={formCadastro.email}
-            disabled={cadastroConcluido}
-          />
-        </label>
+          <div className="login-fields">
+            <div className="field-group">
+              <input
+                name="nome"
+                onChange={atualizarCampo}
+                placeholder=" "
+                required
+                type="text"
+                value={formCadastro.nome}
+                className="field-input"
+                disabled={cadastroConcluido}
+              />
+              <label className="field-label">Nome</label>
+            </div>
 
-        <label>
-          Senha
-          <input
-            autoComplete="new-password"
-            name="senha"
-            onChange={atualizarCampo}
-            placeholder="Crie uma senha"
-            required
-            type="password"
-            value={formCadastro.senha}
-            disabled={cadastroConcluido}
-          />
-        </label>
+            <div className="field-group">
+              <input
+                autoComplete="email"
+                name="email"
+                onChange={atualizarCampo}
+                placeholder=" "
+                required
+                type="email"
+                value={formCadastro.email}
+                className="field-input"
+                disabled={cadastroConcluido}
+              />
+              <label className="field-label">Email</label>
+            </div>
 
-        {mensagem && <p className="mensagem">{mensagem}</p>}
+            <div className="field-group">
+              <input
+                autoComplete="new-password"
+                name="senha"
+                onChange={atualizarCampo}
+                placeholder=" "
+                required
+                type="password"
+                value={formCadastro.senha}
+                className="field-input"
+                disabled={cadastroConcluido}
+              />
+              <label className="field-label">Senha</label>
+            </div>
+          </div>
 
-        {!cadastroConcluido && (
-          <button disabled={carregando} type="submit">
-            {carregando ? "Cadastrando..." : "Cadastrar"}
-          </button>
-        )}
+          {mensagem && <p className={`login-mensagem ${cadastroConcluido ? "sucesso" : "erro"}`}>{mensagem}</p>}
 
-        {cadastroConcluido && (
-          <button type="button" onClick={() => navigate("/login")}>
-            Ir para Login
-          </button>
-        )}
+          {!cadastroConcluido && (
+            <button className="btn-entrar" disabled={carregando} type="submit">
+              {carregando ? "Cadastrando..." : "Cadastrar"}
+            </button>
+          )}
 
-        {!cadastroConcluido && (
-          <button
-            disabled={carregando}
-            type="button"
-            onClick={() => navigate("/login")}
-          >
-            Voltar para Login
-          </button>
-        )}
+          {cadastroConcluido && (
+            <button className="btn-entrar" type="button" onClick={() => navigate("/login")}>
+              Ir para Login
+            </button>
+          )}
+
+          {!cadastroConcluido && (
+            <button
+              className="btn-cadastro"
+              disabled={carregando}
+              type="button"
+              onClick={() => navigate("/login")}
+            >
+              Voltar para Login
+            </button>
+          )}
+        </div>
       </form>
     </Secao>
   );
