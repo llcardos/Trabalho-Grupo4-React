@@ -3,7 +3,6 @@ function FormPlaneta({ onSubmit, fecharModal, formPlaneta, setFormPlaneta, titul
   return (
     <form className="alien-form" onSubmit={onSubmit}>
       <div className="modal-header">
-        <h2>{isEdicao ? "Editar planeta" : "Cadastrar planeta"}</h2>
         <button
           aria-label="Fechar modal"
           className="modal-close"

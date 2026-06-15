@@ -2,7 +2,6 @@ function FormAvistamento({ onSubmit, fecharModal, formAvistamento, setFormAvista
   return (
     <form className="avistamento-form" onSubmit={onSubmit}>
       <div className="modal-header">
-        <h2>{isEdicao ? "Editar avistamento" : "Cadastrar Avistamento"}</h2>
         <button
           aria-label="Fechar modal"
           className="modal-close"

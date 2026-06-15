@@ -172,6 +172,7 @@ function Home() {
     setForm({ ...ENTIDADES[entidade].estadoInicial });
     setMensagemCadastro("");
     setModalAberto(true);
+    setEntidadeEditando(null);
   }
 
   function abrirModalEdicao(entidade) {
@@ -441,8 +442,10 @@ function Home() {
                 )}
                 
                 <FormComponent
-                  cadastrarPlaneta={entidadeEditando ? salvarEdicaoEntidade : cadastrarEntidade}
+                  onSubmit={entidadeEditando ? salvarEdicaoEntidade : cadastrarEntidade}
                   fecharModal={fecharModal}
+                  isEdicao={!!entidadeEditando}
+                  titulo={entidadeEditando ? `Editar ${ENTIDADES[entidadeAtiva].nome}` : `Cadastrar ${ENTIDADES[entidadeAtiva].nome}`}
                   {...formProps}
                 />
               </div>
