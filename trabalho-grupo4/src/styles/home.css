@@ -1,0 +1,262 @@
+.info-listas {
+    background-color: #e3f2fd;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn-recargar {
+    background-color: #ff9800;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-recargar:hover {
+    background-color: #f57c00;
+}
+
+.entidade-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.entidade-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.botoes-gerenciamento {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-adicionar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-editar {
+    background-color: #2196F3;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-remover {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-adicionar:hover {
+    background-color: #45a049;
+}
+
+.btn-editar:hover {
+    background-color: #0b7dda;
+}
+
+.btn-remover:hover {
+    background-color: #da190b;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-pequeno {
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 12px;
+}
+
+.modal-botoes {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.btn-confirmar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.mensagem-global {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    text-align: center;
+    animation: fadeOut 3s ease-in-out forwards;
+}
+
+.mensagem-modal {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.mensagem-modal.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.mensagem-modal.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.mensagem-modal.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.mensagem-modal.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.admin-section {
+    margin-top: 20px;
+}
+
+.public-content {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.login-prompt {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-login,
+.btn-cadastro {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.btn-login {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-cadastro {
+    background-color: #2196F3;
+    color: white;
+}
