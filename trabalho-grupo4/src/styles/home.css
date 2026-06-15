@@ -1,5 +1,5 @@
 .info-listas {
-    background-color: #e3f2fd;
+    background-color: #8785ee27;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -8,6 +8,10 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.info-listas p {
+    color: #f0f0f0;
 }
 
 .btn-recargar {
@@ -26,15 +30,15 @@
 .entidade-section {
     margin-bottom: 30px;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #dddddd30;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color:#8785ee27;
 }
 
 .entidade-section h3 {
     margin-top: 0;
     margin-bottom: 15px;
-    color: #333;
+    color: #f0f0f0;
 }
 
 .botoes-gerenciamento {
@@ -229,6 +233,10 @@
 
 .admin-section {
     margin-top: 20px;
+}
+
+.admin-section h2 {
+    color: #f0f0f0;
 }
 
 .public-content {

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Secao from "../components/Secao";
 import "../styles/login.css";
+import loginVideo from '../videos/login.mp4';
 
 function Login() {
     const navigate = useNavigate();
@@ -51,61 +52,79 @@ function Login() {
 
     return (
         <Secao titulo="Login">
+                <video
+                    key="planetas-video"
+                    autoPlay
+                    loop
+                    muted
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100vw',
+                        height: '100vh',
+                        objectFit: 'cover',
+                        zIndex: -1,
+                        filter: 'blur(2px)'
+                    }}
+                >
+                    <source src={loginVideo} type="video/mp4" />
+                </video>
             <form className="login-form" onSubmit={enviarLogin}>
-                <div className="login-card">
-                    <div className="login-header">
-                        <h2 className="login-title">Bem-vindo</h2>
-                        <p className="login-subtitle">Entre com suas credenciais</p>
-                    </div>
-
-                    <div className="login-fields">
-                        <div className="field-group">
-                            <input
-                                autoComplete="email"
-                                name="email"
-                                onChange={atualizarCampo}
-                                placeholder=" "
-                                required
-                                type="email"
-                                value={formLogin.email}
-                                className="field-input"
-                            />
-                            <label className="field-label">Email</label>
+                    <div className="login-card">
+                        <div className="login-header">
+                            <h2 className="login-title">Bem-vindo</h2>
+                            <p className="login-subtitle">Entre com suas credenciais</p>
                         </div>
 
-                        <div className="field-group">
-                            <input
-                                autoComplete="current-password"
-                                name="senha"
-                                onChange={atualizarCampo}
-                                placeholder=" "
-                                required
-                                type="password"
-                                value={formLogin.senha}
-                                className="field-input"
-                            />
-                            <label className="field-label">Senha</label>
+                        <div className="login-fields">
+                            <div className="field-group">
+                                <input
+                                    autoComplete="email"
+                                    name="email"
+                                    onChange={atualizarCampo}
+                                    placeholder=" "
+                                    required
+                                    type="email"
+                                    value={formLogin.email}
+                                    className="field-input"
+                                />
+                                <label className="field-label">Email</label>
+                            </div>
+
+                            <div className="field-group">
+                                <input
+                                    autoComplete="current-password"
+                                    name="senha"
+                                    onChange={atualizarCampo}
+                                    placeholder=" "
+                                    required
+                                    type="password"
+                                    value={formLogin.senha}
+                                    className="field-input"
+                                />
+                                <label className="field-label">Senha</label>
+                            </div>
                         </div>
+
+                        {mensagem && <p className="login-mensagem erro">{mensagem}</p>}
+
+                        <button className="btn-entrar" disabled={carregando} type="submit">
+                            {carregando ? "Entrando..." : "Entrar"}
+                        </button>
+
+                        <button
+                            className="btn-cadastro"
+                            disabled={carregando}
+                            type="button"
+                            onClick={() => navigate("/cadastro")}
+                        >
+                            Criar novo usuário
+                        </button>
                     </div>
-
-                    {mensagem && <p className="login-mensagem erro">{mensagem}</p>}
-
-                    <button className="btn-entrar" disabled={carregando} type="submit">
-                        {carregando ? "Entrando..." : "Entrar"}
-                    </button>
-
-                    <button
-                        className="btn-cadastro"
-                        disabled={carregando}
-                        type="button"
-                        onClick={() => navigate("/cadastro")}
-                    >
-                        Criar novo usuário
-                    </button>
-                </div>
-            </form>
-        </Secao>
-    );
+                </form>
+            </Secao>
+            );
 }
 
-export default Login;
+            export default Login;

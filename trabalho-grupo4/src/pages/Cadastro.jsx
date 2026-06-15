@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Secao from "../components/Secao";
 import api from "../services/api";
 import "../styles/login.css";
+import loginVideo from '../videos/login.mp4';
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -59,6 +60,24 @@ function Cadastro() {
 
   return (
     <Secao titulo="Cadastro">
+      <video
+                    key="planetas-video"
+                    autoPlay
+                    loop
+                    muted
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100vw',
+                        height: '100vh',
+                        objectFit: 'cover',
+                        zIndex: -1,
+                        filter: 'blur(2px)'
+                    }}
+                >
+                    <source src={loginVideo} type="video/mp4" />
+                </video>
       <form className="login-form" onSubmit={enviarCadastro}>
         <div className="login-card">
           <div className="login-header">

@@ -24,3 +24,13 @@
 .cardPlaneta {
     background-color: #8785ee27;
 }
+
+.cardPlaneta h3, .cardPlaneta h4 {
+    -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #474747e5; 
+}
+
+.cardPlaneta h6, .cardPlaneta p{
+      -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: #474747d7; 
+}
