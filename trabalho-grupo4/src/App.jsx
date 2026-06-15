@@ -14,21 +14,14 @@ function AppContent() {
   const [aliensAPI, setAliens] = useState([]);
   const [avistamentosAPI, setAvistamentos] = useState([]);
   const [planetas, setPlanetas] = useState([]);
-  const url = "/aliens";
+  const urlAliens = "/aliens";
   const urlAvistamentos = "/avistamentos";
   const urlPlanetas = "/planetas";
 
   useEffect(() => {
-    if (!estaAutenticado) {
-      setAliens([]);
-      setAvistamentos([]);
-      setPlanetas([]);
-      return;
-    }
-
     async function buscarDados() {
       try {
-        const respostaAliens = await api.get(url);
+        const respostaAliens = await api.get(urlAliens);
         setAliens(respostaAliens.data);
       } catch (error) {
         console.error("Erro ao buscar aliens com axios:", error);
@@ -50,7 +43,7 @@ function AppContent() {
     }
 
     buscarDados();
-  }, [estaAutenticado]);
+  }, []);
 
   return (
     <>

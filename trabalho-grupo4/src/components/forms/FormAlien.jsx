@@ -2,7 +2,7 @@ function FormAlien({ cadastrarAlien, fecharModal, formAlien, setFormAlien, titul
   return (
     <form className="alien-form" onSubmit={cadastrarAlien}>
       <div className="modal-header">
-        <h2>{titulo || (isEdicao ? "Editar alien" : "Cadastrar alien")}</h2>
+        <h2>{titulo && (isEdicao ? "Editar alien" : "Cadastrar alien")}</h2>
         <button
           aria-label="Fechar modal"
           className="modal-close"
